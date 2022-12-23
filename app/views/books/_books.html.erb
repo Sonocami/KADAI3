@@ -1,0 +1,21 @@
+<h1>User info</h1>
+<% if user.profile_image.attached?%><!--modelのuserで名前をprofile_imageにしているから -->
+<%=image_tag user.profile_image,get_profile_image(100,100)%>
+<%else%>
+<%=image_tag'no_image',get_profile_image(100×100)%>
+<% end %>
+
+<tbody>
+<tr></tr>
+<th>name</th>
+<%=link_to user.name,users_path(user.id)%>
+<tr><introduction></tr>
+<%=link_to user.introduction,users_path(user.id)%>
+</tbody>
+
+<h1>New book</h1>
+<% form_with model:Book.new do|f|%>
+<%=f.text_field:Title%>
+<%=f.text_area:Opinion%>
+<%=f.submit'Create Book'%>
+<% end %>

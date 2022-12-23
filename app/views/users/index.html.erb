@@ -1,0 +1,7 @@
+<%=reneder'books/books',books:@book%> <!--booksにある部分テンプレート-->
+
+<h1>Users</h1>
+<%@user.each do |user|%>
+<%=image_tag user.image.get_profile_image(100,100)%>
+<%=user.name %>
+<%=link_to "show","user/#{user.id}"%>

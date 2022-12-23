@@ -1,2 +1,8 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<%=render'books',books:@book%> <!-- 部分テンプレート-->
+
+
+<h1>Books</h1>
+<%=@books.each do |books|%>
+<p><%=image_tag books.user,get_profile_image(100,100)%></p>
+<p>title:<%=link to_'title'@book%></p>
+<p>opinion:<%user.body%></p>
