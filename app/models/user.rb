@@ -7,6 +7,10 @@ class User < ApplicationRecord
  has_one_attached :profile_image #画像の投稿　メソッドを定義している。
  has_many :book, dependent: :destroy#1:N
 
+  validates:name, presence:true
+  validates:introduction, presence:true
+  validates:profile_image, presene:true
+
   def get_image #画像を扱うにあたっての流れ
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

@@ -5,3 +5,9 @@
 <%=image_tag user.image.get_profile_image(100,100)%>
 <%=user.name %>
 <%=link_to "show","user/#{user.id}"%>
+
+<% if @book.erros.any?%>
+<%=@book.errours.count %> error prohibited this obj from being saved:
+<ul><%@book.errors.full_messages.each do |message|%>
+<li><%=message%></li>
+<%end%>

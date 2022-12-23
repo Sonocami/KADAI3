@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   #ディバイス利用の前にconfigure_permitted_parametersメソッドを実行
+before_action :authenticate_user!, except: [:top]
 before_action :configure_permitted_parameters, if: :devise_controller?
+before_action :correct_user, only: [:edit,:update]
 
   def after_sign_in_path_for(resource)
     user_path(current_user)#現在ログインしているユーザーを参照している。別のやり方では、リソースのやり方もある。
