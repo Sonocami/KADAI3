@@ -5,15 +5,30 @@
 <%=render'user',user:@user%>
 <!--render/部分テンプレートファイルの指定books,ローカル変数：渡す値-->
 
+
 <!--ユーザーの投稿一覧-->
-<h1>Books</h1>
-<tbody>
-<%@books.each do |book|%>
+<h2>Books</h2>
+<table class="table table-hover table-inverse">
+ <thead>
+  <tr>
+   <th>Title</th>
+   <th>Opnion</th>
+   <th colspan="3"></th>
+  </tr>
+ </thead>
+
+ <tbody>
+  <%@books.each do |book|%>
 <!--bookの内容なのに、userの変数を使っていたことと。each自体eachの前の変数がたくさんないといけない。-->
-<%=image_tag book.profile_image.get_profile_image(100,100)%>
-<th>Title</th>
-<%=link_to"title",book_path%>
-<th>Opnion</th>
-<%=book.body%>
-</tbody>
+   <tr>
+    <td><%=image_tag book.user.get_profile_image(100,100)%>
+    </td>
+    <td><%=link_to"title",book_path%>
+    </td>
+    <td><%=book.body%>
+    </td>
+   </tr>
 <%end%>
+  </tbody>
+</table>
+

@@ -1,28 +1,44 @@
-<h1>User info</h1>
+<main>
+ <h2>User info</h2>
+  <% if user.profile_image.attached? %>
+   <!--modelのuserで名前をprofile_imageにしているから -->
+   <%=image_tag user.get_profile_image(100,100)%>
+   <!--関数のためweidth,heightである。-->
+  <%else%>
+   <%=image_tag 'no_image',size:"100×100"%>
+  <% end %>
 
-<tbody>
-<tr>
-<%if user.profile_image.attached? %>
-<!--modelのuserで名前をprofile_imageにしているから -->
-<%=image_tag user.get_profile_image(100,100)%>
-<!--関数のためweidth,heightである。-->
-<%else%>
-<%=image_tag 'no_image',size:"100×100"%>
-<% end %>
-<th>name</th>
-<%=user.name%>
-<th>introduction</th>
-<%=user.introduction%>
-</tr>
-<%=link_to"Edit",edit_user_path%>
+ <table class="table">
+  <tbody>
+   <tr></tr>
+   <tbody>
+    <tr>
+     <th>name</th>
+     <th><%=user.name%></th>
+    </tr>
+     <tr>
+     <th>introduction</th>
+     <th><%=user.introduction%><th>
+    </tr>
+   </tbody>
 <!--link_to は基本GET。画面が表示される。でもdeleteは消したく、でも画面は表示は必要なし。GETではなく、DELETEというHTTPメソッドを使ってあげて、消去できるようになる。-->
+   </tbody>
+   </table>
+    <%=link_to"Edit",edit_user_path(@user.id)%>
 
-</tbody>
-
-<h1>New book</h1>
-<%=form_with model: Book.new do|f|%>
+<h2>New book</h2>
+ <%=form_with model: Book.new do|f|%>
 <!--=がないと枠そもそも作られない。-->
-<%=f.text_field :Title%>
-<%=f.text_area :Opinion%>
-<%=f.submit'Create Book'%>
+  <div class="form-grouup">
+    <label for="book_title">Title</label></br>
+  <%=f.text_field :Title%>
+  </div>
+
+  <div class="form-grouup">
+    <label for="book_opinion">Opinion</label></br>
+  <%=f.text_area :Body%>
+  </div>
+  <div class="form-grouup">
+     <%=f.submit'Create Book'%>
+  </div>
 <% end %>

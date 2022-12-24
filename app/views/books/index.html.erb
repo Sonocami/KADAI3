@@ -2,7 +2,7 @@
 
 
 <h1>Books</h1>
-<%=@books.each do |books|%>
+<% @books.each do |books|%>
 <p><%=image_tag books.user,get_profile_image(100,100)%></p>
 <p>title:<%=link to_'title',@book%></p>
 <p>opinion:<%user.body%></p>
