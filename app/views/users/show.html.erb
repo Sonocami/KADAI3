@@ -2,10 +2,18 @@
 <%=flash[:success]%>
 </div>
 
-<%=reneder'books/books',books:@book%> <!--booksにある部分テンプレート-->
+<%=render'user',user:@user%>
+<!--render/部分テンプレートファイルの指定books,ローカル変数：渡す値-->
 
+<!--ユーザーの投稿一覧-->
 <h1>Books</h1>
-<%@user.each do|user|>
-<%=image_tag user.get_profile_image(100,100)%>
+<tbody>
+<%@books.each do |book|%>
+<!--bookの内容なのに、userの変数を使っていたことと。each自体eachの前の変数がたくさんないといけない。-->
+<%=image_tag book.profile_image.get_profile_image(100,100)%>
+<th>Title</th>
 <%=link_to"title",book_path%>
-<%=user.body%>
+<th>Opnion</th>
+<%=book.body%>
+</tbody>
+<%end%>
