@@ -1,9 +1,20 @@
 <%=render'users/user',user:@user%> <!-- 部分テンプレート-->
 
-
-<h1>Books</h1>
-<% @books.each do |books|%>
-<p><%=image_tag books.user.get_profile_image(100,100)%></p>
-<p>title:<%=link_to 'title',book_path(books.id)%></p>
-<p>opinion:<%=books.body%></p>
-<%end%>
+<div class="col-md-8 offset-md-1">
+ <h2>Books</h2>
+  <table class="table table-hovertable-inverse">
+    <% @books.each do |books|%>
+   <thead>
+     <tr>
+      <th></th>
+      <th>title</th>
+      <th>opinion</th>
+     </tr>
+    </thead>
+     <tbody><%=image_tag books.user.get_profile_image(100,100)%></tbody>
+     <tbody><%=link_to 'title',book_path(books.id)%></tbody>
+     <tbody><%=books.body%></tbody>
+    <%end%>
+   </table>
+</div>
+</main>
