@@ -1,16 +1,13 @@
-<h4>画像</h4>
-  <%= f.file_field :profile_image, accept: "profile_image/*" %>
-  <%= f.submit '投稿' %>
-<% end %>
-
 <h2>User info<h2>
+  
 <%=form_with model:user do |f|%>
-<label for="inputName">Name</label>
-<%=f.text_field:name, autofoucus:true, id"inputName"placeholder:"Name"%>
-<label for=“inputintroduction”>Introduction</label>
-<%=f.text_area:introduction ,autofoucus:true, id"inputIntroduction"placeholder:"Introduction"%>
-<label for="inputImage">Image</label>
-<%=f.text_file:body, placeholder:"Image",accept:"profile_image/*"%>
+ <label for="inputName">Name</label>
+  <%=f.text_field:name, autofoucus:true, id"inputName"placeholder:"Name"%>
+ <label for="inputImage">Image</label>
+  <%=f.text_file:profile_image, placeholder:"Image",accept:"profile_image/*"%>
+ <label for=“inputintroduction”>Introduction</label>
+  <%=f.text_area:introduction ,autofoucus:true, id"inputIntroduction"placeholder:"Introduction"%>
+
 <%=f.submit"Update User"%>
 <%end%>
 

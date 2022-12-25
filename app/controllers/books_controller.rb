@@ -17,7 +17,7 @@ class BooksController < ApplicationController
   @book.user_id=current_user.id
  if @book.save
   flash[:success]="You have created book successfully."
-  redirect_to books_path(book.id)
+  redirect_to book_path(@book.id)
  else
   render:index
  end
@@ -36,7 +36,8 @@ class BooksController < ApplicationController
 
   def show
    @book=Book.find(params[:id])
-   @user.user_id=current_user.id
+   @user=current_user #なぜならschemaにuser_idが存在しないから
+   user
   end
 
   def edit

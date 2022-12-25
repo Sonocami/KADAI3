@@ -4,6 +4,7 @@ before_action :authenticate_user!, except: [:top,:about]
 #ログインしていないユーザーが、トップアクション以外にとぼうとしたとき、にログイン画面に飛ばされる
 before_action :configure_permitted_parameters, if: :devise_controller?
 before_action :correct_user, only: [:edit,:update]
+#edit, updateが動いたら、correct_userが動く。correctが動いたら下のcorrect_userが最初に動く
 
   def after_sign_in_path_for(resource)
     user_path(current_user)#現在ログインしているユーザーを参照している。別のやり方では、リソースのやり方もある。
@@ -24,4 +25,12 @@ before_action :correct_user, only: [:edit,:update]
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
+
+def correct_user
+   @user=User.find(params[:id])
+   #@user=@user(params[:id])
+   if @user != current_user #本人じゃなかったらredirect to
+   redirect_to user_path(current_user.id)
+   end
+end
 end

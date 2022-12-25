@@ -16,17 +16,17 @@ class UsersController < ApplicationController
   def edit
    @user=User.find(params[:id])
    @user.update(user_params)
-   redirect_to  user_path
+   redirect_to  user_path(user.id)
   end
 
   def create
    @user=User.new(user_params)
    @user.user_id=current_user.id
   if @user.save
-   flash[:success]="Welcome! You have signed up successfully."
+   flash[:notice]="Welcome! You have signed up successfully."
    redirect_to user_path(user.id)
   else
-   flash[:success]="Signed in successfully.."
+   flash[:notice]="Signed in successfully.."
    redirect_to user_path(user.id)
   end
   end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
    @user=User.find(params[:id])
    @user.update(user_params)
   if @user.update
-   flash[:success]="You have updated user successfully."
+   flash[:notice]="You have updated user successfully."
    redirect_to user_path(user.id)
   else
    render edit_user_path(user.id)
@@ -44,8 +44,8 @@ class UsersController < ApplicationController
 
  def delete
    session.delete(user.id)
-   @current_user=nil
-   flash[:alert]="Signed out successfully."
+   #@current_user=nil
+   flash[:notice]="Signed out successfully."
    redirect_to:root
  end
 
@@ -55,12 +55,5 @@ private
    params.require(:user).permit(:name,:introduction,:profile_image)
  end
 
- def correct_user
-   @user=User.find(params[:id])
-   #@user=@user(params[:id])
-   redirect_to users_path
-  unless
-   @user==current_user
-  end
- end
+ 
 end
