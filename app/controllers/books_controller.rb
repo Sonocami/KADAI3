@@ -37,7 +37,6 @@ class BooksController < ApplicationController
   def show
    @book=Book.find(params[:id])
    @user=current_user #なぜならschemaにuser_idが存在しないから
-   user
   end
 
   def edit

@@ -1,19 +1,20 @@
 <h2>User info<h2>
-  
-<%=form_with model:user do |f|%>
+
+<%=form_with model:@user do |f|%>
  <label for="inputName">Name</label>
-  <%=f.text_field:name, autofoucus:true, id"inputName"placeholder:"Name"%>
+  <%=f.text_field:name, autofoucus:true, id:"inputName",placeholder:"Name"%>
  <label for="inputImage">Image</label>
-  <%=f.text_file:profile_image, placeholder:"Image",accept:"profile_image/*"%>
+  <%=f.file_field:profile_image, placeholder:"Image",accept:"profile_image/*"%>
  <label for=“inputintroduction”>Introduction</label>
-  <%=f.text_area:introduction ,autofoucus:true, id"inputIntroduction"placeholder:"Introduction"%>
+  <%=f.text_area:introduction ,autofoucus:true, id:"inputIntroduction",placeholder:"Introduction"%>
 
 <%=f.submit"Update User"%>
 <%end%>
 
 
-<% if @user.erros.any?%>
-<%=@user.errours.count %>error prohibited this obj from being saved:
+<% if @user.errors.any?%>
+<%=@user.errors.count %>error prohibited this obj from being saved:
 <ul><%@user.errors.full_messages.each do |message|%> </ul>
 <li><%=message%></li>
+<%end%>
 <%end%>
