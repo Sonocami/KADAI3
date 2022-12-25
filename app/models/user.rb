@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
  has_one_attached :profile_image #画像の投稿　メソッドを定義している。
- has_many :book, dependent: :destroy#1:N
+ has_many:books, dependent: :destroy#1:N
 
-  validates:name, length: {minimum:2, maximum: 20 }
+  validates:name, length: {minimum:2, maximum: 20 }, uniqueness: true
   validates:introduction, length: {maximum: 50 }
 #sign inも、Editも、Createもテーブルにアップロードをするだから、エディットのエラーが出た。
 

@@ -18,15 +18,15 @@ class UsersController < ApplicationController
   end
 
   def create
-   @user=User.new(user_params)
-   @user.user_id=current_user.id
-  if @user.save
-   flash[:notice]="Welcome! You have signed up successfully."
-   redirect_to user_path(user.id)
-  else
-   flash[:notice]="Signed in successfully.."
-   redirect_to user_path(user.id)
-  end
+  # # @user=User.new(user_params)
+  #  @user.user_id=current_user.id
+  # if @user.save
+  #  flash[:notice]="Welcome! You have signed up successfully."
+  #  redirect_to user_path(user.id)
+  # else
+  #  flash[:notice]="Signed in successfully.."
+  #  redirect_to user_path(user.id)
+  # end
   end
 
   def update
