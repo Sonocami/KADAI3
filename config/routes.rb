@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "homes#top"
-  get 'homes/about' =>'homes#about'
+  get 'home/about' =>'homes#about'
 
   resources:books, only:[:index,:show,:create,:edit,:update,:destroy]
   #get'books/:id/edit'=>'books#edit', as:'edit_book'
   #patch 'books/:id' => 'books#update', as:'update_book'
   #delete'books/:id'=>'books#destroy', as:'destroy_book'
 
-  resources:users, only:[:index,:show,:edit,:update,]
+  resources:users, only:[:index,:show,:edit,:update]
   #get 'users/:id/edit'=>'users#edit', as:'edit_user'
   #patch 'users/:id'=>'users#update', as:'update_user'
 

@@ -11,6 +11,10 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+
+
+
   <body>
     <header>
     <!--if user~はdevise側のヘルパーメソッド-->
@@ -27,8 +31,8 @@
 
     <% if user_signed_in? %>
       <li class="nav-item">
-        <%= link_to users_path, class:"navi-link text-light" do%>
-        <span><i class="fas fa-home"></i>Home</span>
+        <%= link_to user_path(current_user), class:"navi-link text-light" do%>
+        <span><i class="user_path"></i>Home</span>
         <%end%>
       </li>
 
@@ -58,7 +62,7 @@
        </li>
 
        <li>
-        <%=link_to homes_about_path,class:"navi-link text-light" do%>
+        <%=link_to home_about_path,class:"navi-link text-light" do%>
        <span><i class="fas fa-link"></i>About</span>
        <%end%>
        </li>

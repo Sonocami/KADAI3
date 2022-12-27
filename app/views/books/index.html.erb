@@ -1,6 +1,6 @@
 <%=render'users/user',user:@user%> <!-- 部分テンプレート-->
 
-<div class="row">
+
 <div class="col-md-8 offset-md-1">
  <h2>Books</h2>
   <table class="table table-hovertable-inverse">
@@ -16,8 +16,11 @@
      <% @books.each do |books|%>
     <tbody>
     <tr>
-     <td><%=image_tag books.user.get_profile_image(100,100)%></td>
-     <td><%=link_to 'title',book_path(books.id)%></td>
+     <td><%=link_to user_path(books.user.id)do%>
+     <%image_tag books.user.get_profile_image(100,100)%>
+     <%end%>
+     </td>
+     <td><%=link_to books.title,book_path(books.id)%></td>
      <td><%=books.body%></td>
     </tr>
     <%end%>
@@ -26,3 +29,8 @@
 </div>
 </div>
 </main>
+
+
+<!--画像そのものをリンクにしたいときはlink to do endを使ってあげる。-->
+<!--book.user.idとはbookと紐付けされているuserが取り柄出せる-->
+<!--.をつけると前のものから「引っ張りだす」-->

@@ -1,9 +1,9 @@
 <main>
 <%=flash[:notice]%>
 
-<div class="container px-t px-sm-0">
+<div class="container">
  <div class="row">
- <div class="col-lg-3">
+ <div class="col-mg-3">
  <h2>User info</h2>
   <% if user.profile_image.attached? %>
    <!--modelのuserで名前をprofile_imageにしているから -->
@@ -31,7 +31,9 @@
    </table>
 
    <div class="row">
-    <%=link_to"Edit",edit_user_path(user.id)%>
+ <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
    </div>
 
 

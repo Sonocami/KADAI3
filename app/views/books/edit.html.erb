@@ -1,23 +1,31 @@
 
-<% if @book.erros.any?%>
-<%=@book.errours.count %>error prohibited this obj from being saved:
+<% if @book.errors.any?%>
+<%=@book.errors.count %>error prohibited this obj from being saved:
 <ul> <%@book.errors.full_messages.each do |message|%>
 <li><%=message %></li>
 <%end%>
+<%end%>
 
+<div class='container'>
+<div class='row'>
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
+<h2>Editing Book<h2>
 
-<h2>Editing book<h2>
+<%=form_with model:@book do |f|%>
 
-<%=form_with model:book do |f|%>
+ <label for="inputtitle">Title</label></br>
+ <%=f.text_field :title, autofocus:true, id:"inputtitle", placeholder:"title"%></br>
+ <!--autofocusはそのページに飛んだ時に、記入する部分に自動的にカーソルが行くこと。これをしたのbodyにも書いてしまったがゆえに、どっちにかくの？という状態になった。-->
 
- <label for="inputTitle">Title</label>
- <%=f.text_field:name, autofoucus:true, id"inputtitle" placeholder:"title"%>
-
- <label for="inputbody">Opinion</label>
- <%=f.text_area:body, autofoucus:true, id"inputbody" placeholder:"body"%>
+ <label for="inputbody">Opinion</label></br>
+ <%=f.text_area :body, id:"inputbody", placeholder:"body"%></br>
 
  <%=f.submit"Update Book"%>
- <li><%=link_to"show",book_path%></li>|<li><%=link_to"back",books_path%></li>
-
  <%end%>
+
+ <%=link_to"Show",book_path%> | <%=link_to"Back",books_path%>
+
+</div>
+</div>
+</div>

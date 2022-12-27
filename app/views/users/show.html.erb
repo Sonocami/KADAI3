@@ -6,10 +6,10 @@
 <!--render/部分テンプレートファイルの指定books,ローカル変数：渡す値-->
 
 </main>
-<h2>Books</h2>
-<!--<div=class"container px-5 px-sm-0">-->
-<!--<div class="row">-->
+
  <div class="col-md-8 offset-md-1">
+<h2>Book detail</h2>
+
 <!--ユーザーの投稿一覧-->
 <table class="table table-hover table-inverse">
  <thead>
@@ -26,7 +26,7 @@
    <tr>
     <td><%=image_tag book.user.get_profile_image(100,100)%>
     </td>
-    <td><%=link_to"title",book_path(book.id)%>
+    <td><%=link_to book.title,book_path(book.id)%>
     </td>
     <td><%=book.body%>
     </td>

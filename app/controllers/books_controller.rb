@@ -19,21 +19,20 @@ before_action :correct_user, only: [:edit]
   @book.user_id=current_user.id
  if @book.save
   flash[:notice]="You have created book successfully."
-  redirect_to book_path(@book.id)
+  redirect_to book_path(@book)
  else
-  render:index
+  render "index"
  end
  end
 
  def update
   @book=Book.find(params[:id])
-  @book.update(books_params)
- if @book.update
+  if@book.update(book_params)  #サーバーからデータを入手するときにあるかかくにんするときはbook_params （手荷物検査みたいなもの！）
     flash[:notice]="You have update book successfully."
-   redirect_to book_path(book.id)
- else
-   render:edit_book_path
- end
+   redirect_to book_path(@book)
+  else
+   render "edit"
+  end
  end
 
   def show
@@ -46,7 +45,7 @@ before_action :correct_user, only: [:edit]
   end
 
   def destroy
-   @book=Book.fine(book_params[:id])
+   @book=Book.find(params[:id]) #わざわざpermitしなくても良いのでparamsにしている
    @book.destroy
    redirect_to books_path
   end
