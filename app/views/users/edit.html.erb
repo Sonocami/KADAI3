@@ -1,15 +1,5 @@
-<h2>User info<h2>
-
-<%=form_with model:@user do |f|%>
- <label for="inputName">Name</label>
-  <%=f.text_field:name, autofoucus:true, id:"inputName",placeholder:"Name"%>
- <label for="inputImage">Image</label>
-  <%=f.file_field:profile_image, placeholder:"Image",accept:"profile_image/*"%>
- <label for=“inputintroduction”>Introduction</label>
-  <%=f.text_area:introduction ,autofoucus:true, id:"inputIntroduction",placeholder:"Introduction"%>
-
-<%=f.submit"Update User"%>
-<%end%>
+<main>
+ <%=flash[:notice]%>
 
 
 <% if @user.errors.any?%>
@@ -18,3 +8,37 @@
 <li><%=message%></li>
 <%end%>
 <%end%>
+
+
+
+  <body>
+  <div class="container px-5 px-sm-0">
+   <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5px-sm-0 mx-auto">
+
+  <h2>User info<h2>
+    <%=form_with model:@user,method: :patch do |f|%>
+   <div class="form-group">
+      <label for="inputName">Name</label></br>
+       <%=f.text_field:name, autofoucus:true, id:"inputName",placeholder:"Name"%>
+   </div>
+
+   <div class="form-group">
+      <label for="inputImage">Image</label></br>
+        <%=f.file_field:profile_image, placeholder:"Image",accept:"profile_image/*"%>
+   </div>
+
+   <div class="form-group">
+      <label for=“inputintroduction”>Introduction</label></br>
+        <%=f.text_area:introduction ,autofoucus:true, id:"inputIntroduction",placeholder:"Introduction"%>
+   </div>
+
+     <div class="form-group">
+        <%=f.submit"Update User"%>
+     </div>
+    </form>
+    </div>
+   </div>
+  </div>
+<%end%>
+</body>

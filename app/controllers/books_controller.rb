@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+before_action :correct_user, only: [:edit]
+#editが動いたら、correct_userが動く。correctが動いたら下のcorrect_userが最初に動く
 
  def new
   @books=Book.new
@@ -16,7 +18,7 @@ class BooksController < ApplicationController
   @book=Book.new(book_params)
   @book.user_id=current_user.id
  if @book.save
-  flash[:success]="You have created book successfully."
+  flash[:notice]="You have created book successfully."
   redirect_to book_path(@book.id)
  else
   render:index
@@ -27,7 +29,7 @@ class BooksController < ApplicationController
   @book=Book.find(params[:id])
   @book.update(books_params)
  if @book.update
-   flash[:success]="You have update book successfully."
+    flash[:notice]="You have update book successfully."
    redirect_to book_path(book.id)
  else
    render:edit_book_path
@@ -41,8 +43,6 @@ class BooksController < ApplicationController
 
   def edit
    @book=Book.find(params[:id])
-   @book.update(books_params)
-   redirect_to book_path
   end
 
   def destroy
@@ -60,9 +60,8 @@ class BooksController < ApplicationController
  def correct_user
   @book=Book.find(params[:id])
   @user=@book.user
+ if @user!=current_user
   redirect_to(books_path)
- unless
-  @user==current_user
- end
+  end
  end
 end
